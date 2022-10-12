@@ -47,3 +47,14 @@ def crawl_page(
         wait: int
 ) -> bool:
     pass
+
+
+# %% For a generator, we should use Iterator as return type (not Iterable)
+# Rule of thumb: annotate functions with most specific return type possible
+def n_squares(n: int) -> Iterator[int]:
+    for i in range(n):
+        yield i ** 2
+
+
+print(n_squares(5))
+print(list(n_squares(5)))

@@ -1,5 +1,7 @@
 # TYPE HINTS FOR CLASSES
 
+from typing import ClassVar
+
 
 # %% Declare instance variable
 class Word:
@@ -45,3 +47,17 @@ a = BankAccount("A", 100)
 b = BankAccount("B", 50)
 transfer(a, b, 30)
 print(a.balance, b.balance)
+
+
+# %% Annotate class variable explicitly with ClassVar
+class Contacts:
+    all_contacts: ClassVar = []
+
+    def __init__(self, name: str, email: str) -> None:
+        self.name = name
+        self.email = email
+        Contacts.all_contacts.append(self)
+
+
+a = Contacts("Tue", "tue@example.com")
+print(a.all_contacts, a.name, a.email)
