@@ -51,3 +51,17 @@ class Supplier(Contact):
 s = Supplier("Tue", "tue@example.com")
 print(s)
 s.send("TV")
+
+
+# %% Create a Friend class extending Contact
+# and overwrite its constructor
+# We can call .super() to invoke all functionality of the super class
+class Friend(Contact):
+    def __init__(self, name: str, email: str, phone: str) -> None:
+        super().__init__(name, email)
+        self.phone = phone
+
+
+# Adding a new friend
+f = Friend("Danh", "danh@example.com", "0909123456")
+print(f)
