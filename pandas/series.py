@@ -64,7 +64,7 @@ print(s.flags)  # Flags associated with s
 print(s.hasnans)  # True if there is any NaN
 
 # --------------------------------------------------
-# LOCATION-BASED SELECTION (.iloc[])
+# SELECTION BY LOCATION (.iloc[])
 # --------------------------------------------------
 # Selection refers to indexing, slicing, and filtering
 # Location-based selection of series is very similar to that of sequences
@@ -85,7 +85,7 @@ print(s.iloc[2:])  # All except first 2
 print(s.iloc[:-2])  # All except last 2
 
 # --------------------------------------------------
-# LABEL-BASED SELECTION (.loc[])
+# SELECTION BY LABEL (.loc[])
 # --------------------------------------------------
 # This selection method can be used with label indices or Boolean arrays
 
@@ -105,7 +105,7 @@ print(s.loc["C":"A"])  # Empty
 print(s.loc[s >= 3])
 
 # --------------------------------------------------
-# VERSATILE INDEXER [] (NOT RECOMMENDED)
+# VERSATILE INDEXER ([], NOT RECOMMENDED)
 # --------------------------------------------------
 
 # %% The following 2 statements are the same
@@ -118,7 +118,7 @@ print(s.iloc[0])
 print(s.loc["A"])
 
 # --------------------------------------------------
-# SCALAR INDEXING
+# SCALAR INDEXING (.iat[] / .at[])
 # --------------------------------------------------
 
 # %% Init
@@ -152,7 +152,25 @@ print(s[s.notnull()])  # Non NaNs
 print(s[(s >= 0) & (s <= 10)])
 print(s[(s < 0) | (s > 5)])
 
+# --------------------------------------------------
+# OTHER SELECTION METHODS
+# --------------------------------------------------
 
+# %% Init
+s = pd.Series([1, -2, 3, -3, 5, 7])
+print(s)
+
+# %% .isin()
+print(s[s.isin(["CA", "VI"])])
+
+# %% .where(cond, otherwise, inplace=False)
+# This makes sure output has the same shape as s
+print(s.where(s > 0))  # Non-positive value will become NaNs
+print(s.where(s > 0, -s))  # Equivalent to s.abs()
+
+# %% Selection and overwriting
+s[s < 0] = 0  # Replace negatives with zeroes
+print(s)
 
 # --------------------------------------------------
 # SUMMARY STATS
