@@ -1,7 +1,5 @@
 # PANDAS DATA FRAMES
 # TODO:
-#   - pd.factorize()
-#   - Index objects
 #   - Missing values
 
 
