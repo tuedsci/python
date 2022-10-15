@@ -58,6 +58,7 @@ print(a[:-2])  # All except last 2
 # %% Generate evenly-spaced sequence
 print(np.arange(5))  # [0, 1, 2, 3, 4, 5]
 print(np.arange(0, 1.0001, 0.1))  # [0.0, 0.1, ..., 1.0]
+print(np.linspace(0, 1, 5))  # [0, .25, .5, .75, 1.]
 
 # %% Special matrices
 print(np.zeros(3))  # 3D vector of zeroes
@@ -65,3 +66,12 @@ print(np.zeros((2, 3)))  # 2x3 matrix of zeroes
 print(np.ones(3))  # 3D vectors of ones
 print(np.ones(3) * 5)  # 3D vectors of fives
 print(np.ones((2, 3)))  # 2x3 matrix of ones
+
+# --------------------------------------------------
+# VECTORIZATION
+# --------------------------------------------------
+a = np.array([1, 2, 3, -5, 0, -10])
+a + 10  # Add 10 element-wise
+a * 10  # Mult 10 element-wise
+a ** 2  # Square element-wise
+abs(a)  # Take absolute value element-wise
