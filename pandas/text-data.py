@@ -37,17 +37,6 @@ print(type(-1))  # int
 # --------------------------------------------------
 # INDEXING WITH .str[]
 # --------------------------------------------------
-# %% Init
-s = pd.Series(
-    ["Tue", "hoA", "timon123", "\tHahaha  ", None, "HELLO WORLD", 42],
-    dtype="string"
-)
-
-print(s)
-
-# --------------------------------------------------
-# STRING METHODS
-# --------------------------------------------------
 
 # %% Init
 s = pd.Series(
@@ -63,10 +52,13 @@ print(s.str[-1])  # Last
 print(s.str[:3])  # First 3
 print(s.str[-3:])  # Last 3
 
-# %% Num chars
+# --------------------------------------------------
+# STRING METHODS
+# --------------------------------------------------
+# %% NUM CHARS
 print(s.str.len())
 
-# %% Case checking
+# %% CASE CHECKING
 print(s[s.str.isupper()])
 print(s[s.str.islower()])
 print(s[s.str.istitle()])
@@ -77,24 +69,24 @@ print(s[s.str.isnumeric()])
 print(s[s.str.isdecimal()])
 print(s[s.str.isspace()])
 
-# %% Case transformation
+# %% CASE TRANSFORMATION
 print(s.str.upper())
 print(s.str.lower())
 print(s.str.title())
 print(s.str.capitalize())
 print(s.str.swapcase())
 
-# %% White space trimming
+# %% WHITE SPACE TRIMMING
 print(s.str.lstrip())
 print(s.str.rstrip())
 print(s.str.strip())
 
-# %% Prefix and suffix removal
+# %% PREFIX AND SUFFIX REMOVAL
 s = pd.Series(["lec_01_intro.txt", "lec_02_variables.txt", "exam_final.docx"])
 print(s.str.removeprefix("lec_"))
 print(s.str.removesuffix(".txt"))
 
-# %% Splitting
+# %% SPLITTING
 # Note: use .str.rsplit() for right splitting
 s = pd.Series(["a_b_c", "c_d_e", None, "f_g_h"], dtype="string")
 print(s.str.split("_"))  # Split without expanding
@@ -104,7 +96,7 @@ print(s.str.split("_", expand=True))  # Split and expand all
 print(s.str.split("_", expand=True, n=1))  # Split and expand to 2 cols
 print(s.str.rsplit("_", expand=True, n=1))  # Same as above, but right split
 
-# %% Partitioning
+# %% PARTITIONING
 # Note: use .str.rpartition for right partitioning
 s = pd.Series(["name: Tue", "edu: MSc", "country: VN"], dtype="string")
 print(s)
@@ -113,12 +105,12 @@ print(s.str.partition(":", expand=False))  # No expansion
 print(s.str.partition(":", expand=False).str[0])  # Get first part
 print(s.str.partition(":", expand=False).str[-1])  # Get last part
 
-# %% Joining
+# %% JOINING
 s = pd.Series([["CA", "Quebec"], ["VN", "Hai Phong"], ["IT", "Milano"]])
 print(s)
 print(s.str.join(", "))
 
-# %% Concatenation
+# %% CONCATENATION
 s = pd.Series(["Cat", "Dog", None, "Duck", "Tiger"], dtype="string")
 print(s)
 print(s.str.cat())  # CatDogDuckTiger
@@ -126,12 +118,12 @@ print(s.str.cat(sep="_"))  # Cat_Dog_Duck_Tiger
 print(s.str.cat(sep="_", na_rep="?"))  # Include missing values
 print(s.str.cat(list("abcde"), sep="_"))  # Cat a list-like object (same len)
 
-# %% Pattern counting
+# %% PATTERN COUNTING
 s = pd.Series(['A', 'B', 'Aaaa', 'Bab', None])
 print(s.str.count("a"))  # Case-sensitive count
 print(s.str.lower().str.count("a"))  # Case-insensitive count
 
-# %% Pattern finding
+# %% PATTERN FINDING
 # Note: .index is similar to .find, but is not recommended
 # because it will raise an error if the pattern is not found
 s = pd.Series(["I love you", "You are good", "you are yourself"])
@@ -141,13 +133,13 @@ print(s.str.findall("you"))  # Return all matches (not indexes)
 print(s.str.findall("you", flags=re.IGNORECASE))  # Case-insensitive
 print(s.str.findall("^you", flags=re.IGNORECASE))  # Regex pattern
 
-# %% Pattern replacement
+# %% PATTERN REPLACEMENT
 # Note: .str.replace also accepts re.compile() and callable objects as pattern
 s.str.replace("a", "XXX")  # Normal replace (case-sensitive)
 s.str.replace("a", "XXX", case=False)  # Normal replace (case-insensitive)
 s.str.replace("^[t|T]", "TTT", regex=True)  # With regex
 
-# %% Pattern extraction with .str.extract()
+# %% PATTERN EXTRACTION WITH .str.extract()
 # This method will return FIRST match only
 # By default, expand=True -> return a DF
 # If expand=False AND we are extracting only one group -> return a series
@@ -156,13 +148,13 @@ print(s)
 print(s.str.extract(r"(?P<letter>[ab])(?P<digit>\d)"))  # Named group
 print(s.str.extract(r"([ab])?(\d)"))  # Unnamed group
 
-# %% Pattern extraction with .str.extractall()
+# %% PATTERN EXTRACTION WITH .str.extractall()
 # This method will return all matches
 s = pd.Series(["a1a2", "b1", "c1"], dtype="string")
 print(s)
 print(s.str.extractall("(?P<letter>[a-z])(?P<digit>[0-9])"))
 
-# %% Pattern match checking
+# %% PATTERN MATCH CHECKING
 # Note: the bellow method can take an extra argument na=True|False
 # If na=False and a match is performed on NA, then a False will be returned
 # instead of <NA>
@@ -174,25 +166,25 @@ print(s.str.startswith("3"))  # Starts with 3?
 print(s.str.endswith("x"))  # Starts with x?
 print(s.str.match(r"[0-9][a-z]"))  # Match a pattern at the start of s?
 
-# %% Replication
+# %% REPLICATION
 s = pd.Series(["a", "b", "c"], dtype="string")
 print(s)
 print(s.str.repeat(3))
 
-# %% Padding
+# %% PADDING
 s = pd.Series(["1", "2", "11", "12"], dtype="string")
 print(s)
 print(s.str.pad(3, "left", "?"))  # Left pad
 print(s.str.pad(3, "right", "?"))  # Right pad
 print(s.str.pad(3, "both", "?"))  # Both side pad
 
-# %% Justification
+# %% JUSTIFICATION
 s = pd.Series(["1", "2", "11", "12"], dtype="string")
 print(s)
 print(s.str.ljust(3, "?"))  # Left just (right fill)
 print(s.str.rjust(3, "?"))  # Right just (left fill)
 
-# %% Zero fill
+# %% ZERO FILL
 s = pd.Series(["1", "2", "11", "12"], dtype="string")
 print(s)
 print(s.str.zfill(3))
