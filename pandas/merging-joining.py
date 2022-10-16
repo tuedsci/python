@@ -1,8 +1,6 @@
 # DATA MERGING AND JOINING
 # TODO:
 #   - merge_asof(): approximate matching
-
-# %% Imports
 import pandas as pd
 
 # %% Init

@@ -1,5 +1,4 @@
 # DATA AGGREGATION
-
 from pydataset import data
 
 # %% Init

@@ -1,6 +1,4 @@
 # DATA SELECTION
-
-# %% Imports
 import seaborn as sns
 
 # --------------------------------------------------

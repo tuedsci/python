@@ -1,7 +1,4 @@
 # SAMPLE DATASETS FOR LEARNING PYTHON
-# Installation: pip install pydataset
-
-# %% Init
 import os
 from pydataset import data
 

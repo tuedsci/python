@@ -1,7 +1,5 @@
 # PANDAS DATA FRAMES
-
 import pandas as pd
-import numpy as np
 
 # --------------------------------------------------
 # CREATE A DATA FRAME
